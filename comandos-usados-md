@@ -1,0 +1,166 @@
+administrador@l2pc:~/.ssh$ cd ./home
+bash: cd: ./home: No existe el archivo o el directorio
+administrador@l2pc:~/.ssh$ pwd
+/home/administrador/.ssh
+administrador@l2pc:~/.ssh$ cd ..
+administrador@l2pc:~$ ls
+ anaconda3       Escritorio                  Música        Vídeos
+ Android         IdeaProjects                Plantillas   'VirtualBox VMs'
+ CLionProjects   Imágenes                    Público       wget-log
+ Descargas       minikube_latest_amd64.deb   snap
+ Documentos      minikube-linux-amd64        tmp-pedrozo
+administrador@l2pc:~$ cd tmp-pedrozo
+administrador@l2pc:~/tmp-pedrozo$ ls
+administrador@l2pc:~/tmp-pedrozo$ git clone https://github.com/dani-spr/holagithub.git
+Clonando en 'holagithub'...
+Username for 'https://github.com': dspr0001
+Password for 'https://dspr0001@github.com': 
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Autenticación falló para 'https://github.com/dani-spr/holagithub.git/'
+administrador@l2pc:~/tmp-pedrozo$ git clone git@github.com:dani-spr/holagithub.git
+Clonando en 'holagithub'...
+The authenticity of host 'github.com (140.82.121.3)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Recibiendo objetos: 100% (6/6), listo.
+administrador@l2pc:~/tmp-pedrozo$ ls
+holagithub
+administrador@l2pc:~/tmp-pedrozo$ git status
+fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git
+administrador@l2pc:~/tmp-pedrozo$ cd holagithub/
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama main
+Tu rama está actualizada con 'origin/main'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama main
+Tu rama está actualizada con 'origin/main'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git branch
+* main
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git branch -a
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git checkout test
+error: ruta especificada 'test' no concordó con ningún archivo conocido por git
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git branch -r
+  origin/HEAD -> origin/main
+  origin/main
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git branch -r | grep -v /HEAD | grep -v main
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git ls-remote
+From git@github.com:dani-spr/holagithub.git
+c477ebf326131f7fd7b9c4746fbd81e3c0112ce0	HEAD
+c477ebf326131f7fd7b9c4746fbd81e3c0112ce0	refs/heads/main
+c477ebf326131f7fd7b9c4746fbd81e3c0112ce0	refs/heads/release
+c477ebf326131f7fd7b9c4746fbd81e3c0112ce0	refs/heads/test
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git checkout refs/heads/test
+error: ruta especificada 'refs/heads/test' no concordó con ningún archivo conocido por git
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git pull release
+fatal: 'release' does not appear to be a git repository
+fatal: No se pudo leer del repositorio remoto.
+
+Por favor asegúrate de que tengas los permisos de acceso correctos
+y que el repositorio exista.
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git branch release
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git switch release
+Cambiado a rama 'release'
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git pull
+Ya está actualizado.
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama release
+Tu rama está actualizada con 'origin/release'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama release
+Tu rama está actualizada con 'origin/release'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+administrador@l2pc:~/tmp-pedrozo/holagithub$ nano .gitignore
+administrador@l2pc:~/tmp-pedrozo/holagithub$ 
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama release
+Tu rama está actualizada con 'origin/release'.
+
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+	.gitignore
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git add .gitignore
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git commit -m "Agrego el git ignore"
+[release 6fb9d56] Agrego el git ignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git push
+Enumerando objetos: 4, listo.
+Contando objetos: 100% (4/4), listo.
+Compresión delta usando hasta 28 hilos
+Comprimiendo objetos: 100% (2/2), listo.
+Escribiendo objetos: 100% (3/3), 279 bytes | 279.00 KiB/s, listo.
+Total 3 (delta 0), reusados 0 (delta 0), pack-reusados 0
+To github.com:dani-spr/holagithub.git
+   c477ebf..6fb9d56  release -> release
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama release
+Tu rama está actualizada con 'origin/release'.
+
+nada para hacer commit, el árbol de trabajo está limpio
+administrador@l2pc:~/tmp-pedrozo/holagithub$ ls
+README.md
+administrador@l2pc:~/tmp-pedrozo/holagithub$ nano README.md
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama release
+Tu rama está actualizada con 'origin/release'.
+
+Cambios no rastreados para el commit:
+  (usa "git add <archivo>..." para actualizar lo que será confirmado)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+	modificados:     README.md
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git add README.md
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git commit -m "modifico desde la rama release"
+[release 997144e] modifico desde la rama release
+ 1 file changed, 3 insertions(+)
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git push
+Enumerando objetos: 5, listo.
+Contando objetos: 100% (5/5), listo.
+Compresión delta usando hasta 28 hilos
+Comprimiendo objetos: 100% (3/3), listo.
+Escribiendo objetos: 100% (3/3), 363 bytes | 363.00 KiB/s, listo.
+Total 3 (delta 1), reusados 0 (delta 0), pack-reusados 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:dani-spr/holagithub.git
+   6fb9d56..997144e  release -> release
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git switch main
+Cambiado a rama 'main'
+Tu rama está actualizada con 'origin/main'.
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git merge release
+Actualizando c477ebf..997144e
+Fast-forward
+ .gitignore | 1 +
+ README.md  | 3 +++
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitignore
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git status
+En la rama main
+Tu rama está adelantada a 'origin/main' por 2 commits.
+  (usa "git push" para publicar tus commits locales)
+
+nada para hacer commit, el árbol de trabajo está limpio
+administrador@l2pc:~/tmp-pedrozo/holagithub$ git push
+Total 0 (delta 0), reusados 0 (delta 0), pack-reusados 0
+To github.com:dani-spr/holagithub.git
+   c477ebf..997144e  main -> main
+administrador@l2pc:~/tmp-pedrozo/holagithub$ 
